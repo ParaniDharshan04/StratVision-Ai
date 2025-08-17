@@ -39,7 +39,7 @@ const prompt = ai.definePrompt({
 
   Classify the following competitor data into one of the following categories: Product Launch, Hiring, Market Expansion, Funding, or Partnership.
 
-  Return a confidence score between 0 and 1 for the classification.
+  Return a confidence score between 0 and 1 for the classification. The confidence score should reflect how clearly the text aligns with a single category. For example, if the text is clearly and solely about a product launch, the confidence should be high (e.g., > 0.9). If the text mentions multiple themes (like a product launch and a new partnership), the confidence for the primary category should be lower (e.g., 0.6-0.8).
 
   Competitor Data: {{{competitorData}}}
   `,
