@@ -1,17 +1,15 @@
 'use client';
 
-import { useFormStatus } from 'react-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Loader2 } from 'lucide-react';
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
+function SubmitButton({ isPending }: { isPending: boolean }) {
   return (
-    <Button type="submit" disabled={pending} className="w-full bg-primary hover:bg-primary/90">
-      {pending ? (
+    <Button type="submit" disabled={isPending} className="w-full bg-primary hover:bg-primary/90">
+      {isPending ? (
         <>
           <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Analyzing...
         </>
@@ -24,9 +22,10 @@ function SubmitButton() {
 
 type CompetitorFormProps = {
   action: (formData: FormData) => void;
+  isPending: boolean;
 };
 
-export function CompetitorForm({ action }: CompetitorFormProps) {
+export function CompetitorForm({ action, isPending }: CompetitorFormProps) {
   return (
     <form action={action}>
       <Card>
@@ -49,7 +48,7 @@ export function CompetitorForm({ action }: CompetitorFormProps) {
           </div>
         </CardContent>
         <CardFooter>
-          <SubmitButton />
+          <SubmitButton isPending={isPending} />
         </CardFooter>
       </Card>
     </form>
