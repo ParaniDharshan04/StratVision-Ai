@@ -30,18 +30,18 @@ export function InputForm({ action, isPending }: InputFormProps) {
     <form action={action}>
       <Card>
         <CardHeader>
-          <CardTitle>Input Information</CardTitle>
+          <CardTitle>Text Corpus</CardTitle>
           <CardDescription>
             Paste any text data like press releases, job postings, or blog updates below.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid w-full gap-1.5">
-            <Label htmlFor="input-information">Text Input</Label>
+            <Label htmlFor="text-corpus">Text Input</Label>
             <Textarea
               placeholder="Paste content here..."
-              id="input-information"
-              name="inputInformation"
+              id="text-corpus"
+              name="textCorpus"
               className="min-h-60"
               required
             />

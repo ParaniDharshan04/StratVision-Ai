@@ -1,44 +1,44 @@
 'use server';
 
 /**
- * @fileOverview Summarizes input information to quickly understand key points.
+ * @fileOverview Summarizes a text corpus to quickly understand key points.
  *
- * - summarizeInputInformation - A function that summarizes the input information.
- * - SummarizeInputInformationInput - The input type for the summarizeInputInformation function.
- * - SummarizeInputInformationOutput - The return type for the summarizeInputInformation function.
+ * - summarizeTextCorpus - A function that summarizes the text corpus.
+ * - SummarizeTextCorpusInput - The input type for the summarizeTextCorpus function.
+ * - SummarizeTextCorpusOutput - The return type for the summarizeTextCorpus function.
  */
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
-const SummarizeInputInformationInputSchema = z.object({
-  inputInformation: z.string().describe('The input information to summarize.'),
+const SummarizeTextCorpusInputSchema = z.object({
+  textCorpus: z.string().describe('The text corpus to summarize.'),
 });
-export type SummarizeInputInformationInput = z.infer<typeof SummarizeInputInformationInputSchema>;
+export type SummarizeTextCorpusInput = z.infer<typeof SummarizeTextCorpusInputSchema>;
 
-const SummarizeInputInformationOutputSchema = z.object({
-  summary: z.string().describe('A summary of the input information.'),
+const SummarizeTextCorpusOutputSchema = z.object({
+  summary: z.string().describe('A summary of the text corpus.'),
 });
-export type SummarizeInputInformationOutput = z.infer<typeof SummarizeInputInformationOutputSchema>;
+export type SummarizeTextCorpusOutput = z.infer<typeof SummarizeTextCorpusOutputSchema>;
 
-export async function summarizeInputInformation(
-  input: SummarizeInputInformationInput
-): Promise<SummarizeInputInformationOutput> {
-  return summarizeInputInformationFlow(input);
+export async function summarizeTextCorpus(
+  input: SummarizeTextCorpusInput
+): Promise<SummarizeTextCorpusOutput> {
+  return summarizeTextCorpusFlow(input);
 }
 
 const prompt = ai.definePrompt({
-  name: 'summarizeInputInformationPrompt',
-  input: {schema: SummarizeInputInformationInputSchema},
-  output: {schema: SummarizeInputInformationOutputSchema},
-  prompt: `Summarize the following input information in a concise manner:\n\n{{{inputInformation}}}`,
+  name: 'summarizeTextCorpusPrompt',
+  input: {schema: SummarizeTextCorpusInputSchema},
+  output: {schema: SummarizeTextCorpusOutputSchema},
+  prompt: `Summarize the following text corpus in a concise manner:\n\n{{{textCorpus}}}`,
 });
 
-const summarizeInputInformationFlow = ai.defineFlow(
+const summarizeTextCorpusFlow = ai.defineFlow(
   {
-    name: 'summarizeInputInformationFlow',
-    inputSchema: SummarizeInputInformationInputSchema,
-    outputSchema: SummarizeInputInformationOutputSchema,
+    name: 'summarizeTextCorpusFlow',
+    inputSchema: SummarizeTextCorpusInputSchema,
+    outputSchema: SummarizeTextCorpusOutputSchema,
   },
   async input => {
     const {output} = await prompt(input);

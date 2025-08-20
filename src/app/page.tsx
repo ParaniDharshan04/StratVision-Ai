@@ -4,7 +4,7 @@ import { useActionState, useTransition } from 'react';
 import { StratvisionLogo } from '@/components/stratvision-logo';
 import { InputForm } from '@/components/input-form';
 import { ResultsDashboard } from '@/components/results-dashboard';
-import { analyzeInputInformation, type FormState } from '@/app/actions';
+import { analyzeTextCorpus, type FormState } from '@/app/actions';
 
 const initialState: FormState = {
   result: null,
@@ -12,7 +12,7 @@ const initialState: FormState = {
 };
 
 export default function Home() {
-  const [state, formAction, isPending] = useActionState(analyzeInputInformation, initialState);
+  const [state, formAction, isPending] = useActionState(analyzeTextCorpus, initialState);
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-background">

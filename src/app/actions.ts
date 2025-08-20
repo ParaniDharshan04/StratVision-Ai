@@ -1,7 +1,7 @@
 'use server';
 
-import { summarizeInputInformation } from '@/ai/flows/summarize-input-information';
-import { classifyInputInformation } from '@/ai/flows/classify-input-information';
+import { summarizeTextCorpus } from '@/ai/flows/summarize-input-information';
+import { classifyTextCorpus } from '@/ai/flows/classify-input-information';
 import { extractEntities } from '@/ai/flows/extract-entities';
 import { detectStrategicSignals } from '@/ai/flows/detect-strategic-signals';
 import type { AnalysisResult } from '@/lib/types';
@@ -11,11 +11,11 @@ export type FormState = {
   error: string | null;
 };
 
-export async function analyzeInputInformation(
+export async function analyzeTextCorpus(
   prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
-  const text = formData.get('inputInformation') as string;
+  const text = formData.get('textCorpus') as string;
 
   if (!text || text.trim().length === 0) {
     return { result: null, error: 'Please provide some text to analyze.' };
@@ -24,10 +24,10 @@ export async function analyzeInputInformation(
   try {
     const [summaryResult, classificationResult, entitiesResult, insightsResult] =
       await Promise.all([
-        summarizeInputInformation({ inputInformation: text }),
-        classifyInputInformation({ inputInformation: text }),
+        summarizeTextCorpus({ textCorpus: text }),
+        classifyTextCorpus({ textCorpus: text }),
         extractEntities({ text: text }),
-        detectStrategicSignals({ inputInformation: text }),
+        detectStrategicSignals({ textCorpus: text }),
       ]);
 
     const result: AnalysisResult = {
