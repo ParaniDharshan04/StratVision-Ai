@@ -1,10 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tag, Building, Rocket, DollarSign, Handshake, Briefcase } from 'lucide-react';
-import type { ClassifyCompetitorDataOutput } from '@/ai/flows/classify-competitor-data';
+import type { ClassifyInputInformationOutput } from '@/ai/flows/classify-input-information';
 
 type ClassificationCardProps = {
-  classification: ClassifyCompetitorDataOutput;
+  classification: ClassifyInputInformationOutput;
 };
 
 const categoryIcons: Record<string, React.ReactNode> = {

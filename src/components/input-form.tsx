@@ -20,28 +20,28 @@ function SubmitButton({ isPending }: { isPending: boolean }) {
   );
 }
 
-type CompetitorFormProps = {
+type InputFormProps = {
   action: (formData: FormData) => void;
   isPending: boolean;
 };
 
-export function CompetitorForm({ action, isPending }: CompetitorFormProps) {
+export function InputForm({ action, isPending }: InputFormProps) {
   return (
     <form action={action}>
       <Card>
         <CardHeader>
-          <CardTitle>Competitor Data</CardTitle>
+          <CardTitle>Input Information</CardTitle>
           <CardDescription>
-            Paste any competitor text data like press releases, job postings, or blog updates below.
+            Paste any text data like press releases, job postings, or blog updates below.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid w-full gap-1.5">
-            <Label htmlFor="competitor-data">Text Input</Label>
+            <Label htmlFor="input-information">Text Input</Label>
             <Textarea
-              placeholder="Paste competitor content here..."
-              id="competitor-data"
-              name="competitorData"
+              placeholder="Paste content here..."
+              id="input-information"
+              name="inputInformation"
               className="min-h-60"
               required
             />
